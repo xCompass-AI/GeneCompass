@@ -1,3 +1,3 @@
-window.onload = function () {
-    document.getElementById('main-content').innerHTML = 'geneCompass'
-}
+// window.onload = function () {
+//     document.getElementById('main-content').innerHTML = 'geneCompass'
+// }
