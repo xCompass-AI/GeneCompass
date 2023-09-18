@@ -1153,7 +1153,7 @@ Common Style CSS
 .single-feature > h2 {
 	font-size: 24px;
 	font-weight: 700;
-	line-height: 0;
+	line-height: ;
 	margin-bottom: 15px;
 	transition: all 0.3s ease-in-out;
 }
@@ -1672,7 +1672,7 @@ Common Style CSS
 	font-size: 35px;
 	line-height: 46px;
 	color: #606060;
-	vertical-align: 0;
+	vertical-align: ;
 }
 .testimonial-content > p {
 	font-size: 16px;
@@ -1687,7 +1687,7 @@ Common Style CSS
 }
 .testimonial-author > h5 > span {
 	font-size: 14px;
-	font-family: 'Mada', sans-serif;
+	font-family: 'Mada', sans-serif
 	color: #6e6e6e;
 	font-weight: 400;
 }
@@ -2350,8 +2350,7 @@ h4.small-title {
 	color: #eaeaea;
 	font-size: 14px;
 	text-transform: capitalize;
-	line-height: 26px ;
-    -webkit-transform: translateY(0);
+	line-height: 26px -webkit-transform: translateY(0);
 	transform: translateY(0);
 	-webkit-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
