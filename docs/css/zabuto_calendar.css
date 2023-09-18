@@ -1,0 +1,90 @@
+/**
+ * Zabuto Calendar
+ */
+
+ .zabuto_calender tr.calendar-month-header {
+    background:  #303030;
+}
+.zabuto_calendar tr.calendar-month-header {
+    background: #303030;
+    color: #ffffff;
+}
+.zabuto_calendar tr.calendar-month-header td {
+    text-align:  center;
+    padding: 40px 0;
+    font-weight: 300;
+    padding-top: 50px;
+}
+.zabuto_calendar tr.calendar-month-header td span {
+    font-size: 28px;
+    text-transform:  uppercase;
+}
+.zabuto_calendar tr.calendar-month-header td div.calendar-month-navigation span {
+    font-size: 22px !important;
+    line-height: 60px;
+}
+.zabuto_calendar {
+    max-width:  100% !important;
+    width: 100%;
+    font-family: 'Droid Serif';
+}
+div#zabuto_calendar_1tdz {
+    max-width:  100% !important;
+    width:  100%;
+}
+.zabuto_calendar th, .zabuto_calendar td {
+    padding:  0;
+    text-align: center;
+}
+.zabuto_calendar .calendar-dow-header th {
+	color: #b99044;
+	font-size: 10px;
+	font-weight: 600;
+	padding: 28px 0;
+	padding-bottom: 10px;
+}
+.zabuto_calendar table.table {
+    border-bottom: none;
+    background: #f5f5f5;
+    margin-bottom: 0 !important;
+}
+div#zabuto_calendar_i3l_nav-next span {
+    padding-right: 30px;
+}
+div#zabuto_calendar_i3l_nav-prev span {
+    padding-left: 30px;
+}
+.zabuto_calendar .day {
+    padding: 5px 11px;
+    color: #555555;
+    font-weight:  600;
+    font-size:  14px;
+}
+.zabuto_calendar tr.calendar-month-header div {
+    cursor:  pointer;
+}
+.zabuto_calendar table.table tr.calendar-dow:last-child td {
+    padding-bottom: 15px;
+}
+.zabuto_calendar .day.today {
+    position:  relative;
+}
+.zabuto_calendar .day.today:before {
+    position:  absolute;
+    content:  "";
+    height: 6px;
+    width:  6px;
+    background: #b99044;
+    border-radius: 100%;
+    right: 10px;
+    top: 5px;
+}
+.zabuto_calendar table.table tr.calendar-dow td{
+    border-top: 0;
+}
+.zabuto_calendar table.table tr.calendar-dow td:last-child {
+    padding-right: 10px;
+}
+.zabuto_calendar table.table tr.calendar-dow td:first-child {
+    padding-left: 10px;
+}

@@ -1,0 +1,250 @@
+.datepicker {
+
+	position: absolute;
+	top: 18px;
+	left: 18px;
+	background: #FFF;
+	padding: 4px;
+	border: 1px solid #CCC;
+	font-size: 16px;
+	font-weight: 400;
+	z-index: 50;
+	/* box-shadow */
+	-webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+	box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.datepicker * {
+
+	/* box-sizing */
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+.datepicker .tip {
+
+	position: absolute;
+	left: 12px;
+	top: -12px;
+	z-index: 5;
+	width: 0;
+	height: 0;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 12px solid #CCC;
+}
+
+.datepicker .tip:before {
+
+	content: ' ';
+	position: absolute;
+	left: -8px;
+	top: 2px;
+	z-index: 20;
+	width: 0;
+	height: 0;
+	border-left: 8px solid transparent;
+	border-right: 8px solid transparent;
+	border-bottom: 10px solid #FFF;
+}
+
+.datepicker a {
+
+	text-decoration: none;
+	color: #000;
+}
+
+.datepicker .row {
+
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+.datepicker .row.header {
+
+	text-align: center;
+	position: relative;
+	margin: 4px 0;
+}
+
+.datepicker .row.header a {
+
+	margin: 0 3px;
+	cursor: pointer;
+}
+
+.datepicker .row.header .prev {
+
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 0;
+	width: 10px;
+	height: 10px;
+	padding: 4px;
+}
+
+.datepicker .row.header .next {
+
+	display: block;
+	position: absolute;
+	right: 0;
+	top: 0;
+	margin: 0;
+	width: 10px;
+	height: 10px;
+	padding: 4px;
+}
+
+.datepicker .row.header .prev .arrow{
+	display: block;
+	width: 0;
+	height: 0;
+	border-top: 5px solid transparent;
+	border-right: 6px solid #000;
+	border-bottom: 5px solid transparent;
+	float: left;
+}
+
+.datepicker .row.header .next .arrow{
+	display: block;
+	width: 0;
+	height: 0;
+	border-top: 5px solid transparent;
+	border-left: 6px solid #000;
+	border-bottom: 5px solid transparent;
+	float: right;
+}
+
+.datepicker .row.header .prev.disabled {
+
+	cursor: default;
+}
+
+.datepicker .row.header .next.disabled {
+
+	cursor: default;
+}
+
+.datepicker .row.header .prev.disabled .arrow {
+
+	border-right-color: #DDD;
+}
+
+.datepicker .row.header .next.disabled .arrow {
+
+	border-left-color: #DDD;
+}
+
+.datepicker .cell {
+
+	display: block;
+	float: left;
+	width: 27px;
+	height: 27px;
+	line-height: 25px;
+	text-align: center;
+	padding: 0 3px;
+	border: 1px solid transparent;
+}
+
+.datepicker .cell.large {
+
+	width: 59px;
+	padding: 0;
+	height: 60px;
+	line-height: 60px;
+	cursor: pointer;
+}
+
+.datepicker .cell.large.double {
+
+	line-height: 25px;
+	word-wrap: break-word;
+	text-align: left;
+}
+
+.datepicker .day {
+
+	color: #000;
+	cursor: pointer;
+	text-align: right;
+}
+
+.datepicker .cell.day.today {
+
+	color: #000;
+	background: #D6EAFF;
+}
+
+.datepicker .cell.day:hover,
+.datepicker .cell.month:hover,
+.datepicker .cell.year:hover,
+.datepicker .cell.decade:hover {
+
+	background: #3298FF;
+	color: #FFF;
+}
+
+.datepicker .cell.blank,
+.datepicker .cell.blank:hover {
+
+	background: none;
+	color: inherit;
+	cursor: default;
+}
+
+.datepicker .cell.day.selected,
+.datepicker .cell.month.selected,
+.datepicker .cell.year.selected,
+.datepicker .cell.decade.selected {
+
+	background: #0065CC;
+	color: #FFF;
+}
+
+.datepicker .cell.grayed {
+
+	color: #CCC;
+}
+
+.datepicker .days .cell {
+
+
+	color: #555;
+}
+
+.datepicker .decades .cell span {
+
+
+	display: block;
+	padding: 5px 5px 0;
+}
+
+.datepicker .calendar,
+.datepicker .decades,
+.datepicker .years,
+.datepicker .months {
+
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.datepicker .decades,
+.datepicker .years,
+.datepicker .months {
+
+	display: none;
+}
+
+.datepicker .decades .header,
+.datepicker .years .header,
+.datepicker .months .header {
+
+	margin-bottom: 13px;
+}
