@@ -1,0 +1,25 @@
+export CUDA_VISIBLE_DEVICES=0
+python -m torch.distributed.launch --nproc_per_node=1 \
+--nnodes=1  \
+--node_rank=0 \
+--master_port=12348 \
+pretrain_genecompass_w_human_mouse_base.py \
+--run_name="test" \
+--seed_num=0 \
+--seed_val=42 \
+--token_dict_path="../prior_knowledge/human_mouse_tokens.pickle" \
+--dataset_directory="../data/6000W_control_lung_human" \
+--num_train_epochs=5 \
+--train_micro_batch_size_per_gpu=1 \
+--max_learning_rate=5e-5 \
+--warmup_steps=10000 \
+--emb_warmup_steps=10000 \
+--lr_scheduler_type="linear" \
+--weight_decay=0.01 \
+--dataloader_num_workers=0 \
+--output_directory="../outputs" \
+--do_train \
+--save_model \
+--save_strategy="steps" \
+--save_steps=100000 \
+--fp16 \

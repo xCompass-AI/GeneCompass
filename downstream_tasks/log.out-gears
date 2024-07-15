@@ -1,0 +1,149 @@
+Found local copy...
+Found local copy...
+These perturbations are not in the GO graph and their perturbation can thus not be predicted
+['RHOXF2BB+ctrl' 'ctrl+IER5L' 'KIAA1804+ctrl' 'IER5L+ctrl' 'LYL1+IER5L'
+ 'RHOXF2BB+ZBTB25' 'RHOXF2BB+SET']
+Local copy of pyg dataset is detected. Loading...
+Done!
+Local copy of split is detected. Loading...
+Simulation split test composition:
+combo_seen0:9
+combo_seen1:43
+combo_seen2:19
+unseen_single:36
+Done!
+Creating dataloaders....
+Done!
+Found local copy...
+Start Training...
+id_only
+hola,brenas~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Norman走的是这里啊
+come,here?~~
+我真的画了啊！
+调用get_coexpression_network_from_train函数,绘制共表达网络。
+../data/gears/data/norman_by_new_propress/simulation_1_0.75_0.4_20_co_expression_network.csv
+已经有了现成的。
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+        source    target  importance
+0       SAMD11    SAMD11    0.999596
+1         HES4      HES4    0.999861
+2        ISG15     ISG15    0.999802
+3       RNF223    RNF223    0.999855
+4        RUNX3  TNFRSF18    0.408232
+...        ...       ...         ...
+3418    PSAPL1    COL6A1    0.577358
+3419    COL6A1    COL6A1    1.000000
+3420  C21orf58  C21orf58    0.999746
+3421   CYSLTR2     S100B    0.816519
+3422     S100B     S100B    1.000000
+
+[3423 rows x 3 columns]
++++++++++++++++++++++++++++++++++++++++++++++++++++++
+88467
+loaded!
+train~~~~~~~~~~
+Epoch 1 Step 1 Train Loss: 0.4343
+Epoch 1 Step 51 Train Loss: 0.4710
+Epoch 1 Step 101 Train Loss: 0.5234
+Epoch 1 Step 151 Train Loss: 0.4733
+Epoch 1 Step 201 Train Loss: 0.3942
+Epoch 1 Step 251 Train Loss: 0.4518
+Epoch 1 Step 301 Train Loss: 0.4767
+Epoch 1 Step 351 Train Loss: 0.4385
+Epoch 1 Step 401 Train Loss: 0.4184
+Epoch 1 Step 451 Train Loss: 0.4795
+Epoch 1 Step 501 Train Loss: 0.4459
+Epoch 1 Step 551 Train Loss: 0.4379
+Epoch 1 Step 601 Train Loss: 0.4261
+Epoch 1 Step 651 Train Loss: 0.4064
+Epoch 1 Step 701 Train Loss: 0.4003
+Epoch 1 Step 751 Train Loss: 0.4089
+Epoch 1 Step 801 Train Loss: 0.4224
+Epoch 1 Step 851 Train Loss: 0.4012
+Epoch 1 Step 901 Train Loss: 0.4805
+Epoch 1 Step 951 Train Loss: 0.4426
+Epoch 1 Step 1001 Train Loss: 0.4202
+Epoch 1 Step 1051 Train Loss: 0.4117
+Epoch 1 Step 1101 Train Loss: 0.4479
+Epoch 1 Step 1151 Train Loss: 0.4332
+Epoch 1 Step 1201 Train Loss: 0.4107
+Epoch 1 Step 1251 Train Loss: 0.4470
+Epoch 1 Step 1301 Train Loss: 0.4623
+Epoch 1 Step 1351 Train Loss: 0.4246
+Epoch 1 Step 1401 Train Loss: 0.4905
+Epoch 1 Step 1451 Train Loss: 0.4292
+Epoch 1 Step 1501 Train Loss: 0.4527
+Epoch 1 Step 1551 Train Loss: 0.4114
+Epoch 1 Step 1601 Train Loss: 0.3967
+Epoch 1 Step 1651 Train Loss: 0.4351
+Epoch 1 Step 1701 Train Loss: 0.4357
+Epoch 1 Step 1751 Train Loss: 0.4271
+Epoch 1 Step 1801 Train Loss: 0.4361
+Epoch 1 Step 1851 Train Loss: 0.4628
+Epoch 1 Step 1901 Train Loss: 0.4098
+Epoch 1 Step 1951 Train Loss: 0.4015
+Epoch 1 Step 2001 Train Loss: 0.4803
+Epoch 1 Step 2051 Train Loss: 0.3790
+Epoch 1 Step 2101 Train Loss: 0.4123
+Epoch 1 Step 2151 Train Loss: 0.4020
+Epoch 1 Step 2201 Train Loss: 0.4160
+Epoch 1 Step 2251 Train Loss: 0.4047
+Epoch 1 Step 2301 Train Loss: 0.4165
+Epoch 1 Step 2351 Train Loss: 0.4349
+Epoch 1 Step 2401 Train Loss: 0.4552
+Epoch 1 Step 2451 Train Loss: 0.4673
+Epoch 1 Step 2501 Train Loss: 0.4435
+Epoch 1 Step 2551 Train Loss: 0.4074
+Epoch 1 Step 2601 Train Loss: 0.4192
+Epoch 1 Step 2651 Train Loss: 0.4188
+Epoch 1 Step 2701 Train Loss: 0.4292
+Epoch 1 Step 2751 Train Loss: 0.4459
+Epoch 1 Step 2801 Train Loss: 0.4368
+Epoch 1 Step 2851 Train Loss: 0.4088
+Epoch 1 Step 2901 Train Loss: 0.4161
+Epoch 1 Step 2951 Train Loss: 0.4270
+Epoch 1 Step 3001 Train Loss: 0.4150
+here?
+Epoch 1: Train Overall MSE: 0.0116 Validation Overall MSE: 0.0129. 
+Train Top 20 DE MSE: 0.0991 Validation Top 20 DE MSE: 0.1932. 
+Done!
+Start Testing...
+Best performing model: Test Top 20 DE MSE: 0.1659
+Start doing subgroup analysis for simulation split...
+test_combo_seen0_mse: 0.013110982
+test_combo_seen0_pearson: 0.9575418536436067
+test_combo_seen0_mse_de: 0.12717767
+test_combo_seen0_pearson_de: 0.712988915039912
+test_combo_seen1_mse: 0.013126612
+test_combo_seen1_pearson: 0.9561873550771917
+test_combo_seen1_mse_de: 0.17680128
+test_combo_seen1_pearson_de: 0.8354374912133049
+test_combo_seen2_mse: 0.012941198
+test_combo_seen2_pearson: 0.9581477753987125
+test_combo_seen2_mse_de: 0.18641123
+test_combo_seen2_pearson_de: 0.9092908045503895
+test_unseen_single_mse: 0.011690758
+test_unseen_single_pearson: 0.9613757612357782
+test_unseen_single_mse_de: 0.15169074
+test_unseen_single_pearson_de: 0.903294535458397
+test_combo_seen0_pearson_delta: 0.40177062340935715
+test_combo_seen0_frac_opposite_direction_top20_non_dropout: 0.2722222222222222
+test_combo_seen0_frac_sigma_below_1_non_dropout: 0.7722222222222223
+test_combo_seen0_mse_top20_de_non_dropout: 0.1795935
+test_combo_seen1_pearson_delta: 0.3970734135521594
+test_combo_seen1_frac_opposite_direction_top20_non_dropout: 0.2709302325581395
+test_combo_seen1_frac_sigma_below_1_non_dropout: 0.7558139534883721
+test_combo_seen1_mse_top20_de_non_dropout: 0.2093772
+test_combo_seen2_pearson_delta: 0.41932828852456566
+test_combo_seen2_frac_opposite_direction_top20_non_dropout: 0.20789473684210524
+test_combo_seen2_frac_sigma_below_1_non_dropout: 0.8105263157894737
+test_combo_seen2_mse_top20_de_non_dropout: 0.19194782
+test_unseen_single_pearson_delta: 0.2761319834640682
+test_unseen_single_frac_opposite_direction_top20_non_dropout: 0.28888888888888886
+test_unseen_single_frac_sigma_below_1_non_dropout: 0.8569444444444444
+test_unseen_single_mse_top20_de_non_dropout: 0.15635902
+Done!
+over
+<geares.gears.GEARS object at 0x7f3d3431fac0>
+config_0617id_only_.pkl model_0617id_only_.pt
