@@ -4,7 +4,7 @@ Deciphering universal gene regulatory mechanisms in diverse organisms holds grea
 <div align=center><img src="img/GeneCompass.jpg" alt="alt text" width="800" ></div>
 
 
-- This is the official repository of Genecompass which provides training&finetuning code and pretraining checkpoints.
+- This is the official repository of [Genecompass](https://www.biorxiv.org/content/10.1101/2023.09.26.559542v1) which provides training&finetuning code and pretraining checkpoints.
 
 ## Building Environment
 - GeneCompass is implemented based on Pytorch. We use pytorch-1.13.1 and cuda-11.7. Other version could be also compatible. Building the environment and installing needed package. 
@@ -41,12 +41,13 @@ Pretrained models of GeneCompass on 100 million single-cell transcriptomes from 
 We here show the data processing procedures with [preprocess](./preprocess).
 
 ### Pretrained data
-GeneCompass utilizes over 100 million single-cell transcriptomes from humans and mice. We provide 50K, 500k and 5M pretrained data of human and mouse  respectively, and you can download and pretrain the model.
+GeneCompass utilizes over 100 million single-cell transcriptomes from humans and mice. We provide 50K, 500k and 5M pretrained data of human and mouse  respectively.  You can download and put dataset dir under main path.(e.g. './data/genecompass_5M/')
+
 
 | Data | Description | Download | 
 |:------|:-------|:-------:|
-| 50K | Pretrained data of 50K single cells.| [Link-Human](https://www.scidb.cn/file?fid=be29663db8c11f4e59aaf2d572b699fe&mode=front) [Link-Mouse](https://www.scidb.cn/file?fid=d27960405a1e979eadfc1a00696d5bf2&mode=front) | 
-| 500k | Pretrained data of 500k single cells.| [Link-Human](https://www.scidb.cn/file?fid=d46129ce14de622c4a07a1d1574dddaa&mode=front) [Link-Mouse](https://www.scidb.cn/file?fid=65ff1a08ea3292dbbb2ca113f5041ae8&mode=front) | 
+| 0.05M | Pretrained data of 50K single cells.| [Link-Human](https://www.scidb.cn/file?fid=be29663db8c11f4e59aaf2d572b699fe&mode=front) [Link-Mouse](https://www.scidb.cn/file?fid=d27960405a1e979eadfc1a00696d5bf2&mode=front) | 
+| 0.5M | Pretrained data of 500k single cells.| [Link-Human](https://www.scidb.cn/file?fid=d46129ce14de622c4a07a1d1574dddaa&mode=front) [Link-Mouse](https://www.scidb.cn/file?fid=65ff1a08ea3292dbbb2ca113f5041ae8&mode=front) | 
 | 5M | Pretrained data of 5M single cells.| [Link-Human](https://www.scidb.cn/file?fid=826380b58010377e3fa8724fcf4a5fcc&mode=front) [Link-Mouse](https://www.scidb.cn/file?fid=78e90884d7664b7baa0792c047c7aae8&mode=front) | 
 
 ### Downstream task data
@@ -65,6 +66,7 @@ We provide preprocessed data for above datasets here, and you only need to downl
 | mBrain | Brain from mouse.| GEO: GSE224407  | [Link](https://www.scidb.cn/en/anonymous/aXlpTXYy) | 
 | mLung | Lung from mouse.| GEO: GSE225664 |  [Link](https://www.scidb.cn/en/anonymous/aXlpTXYy) | 
 | mPancreas | Pancreas from mouse.| GEO: GSE132188 | [Link](https://www.scidb.cn/en/anonymous/aXlpTXYy) | 
+
 *GEO means Gene Expression Omnibus.*
 
 
@@ -107,34 +109,32 @@ pretrain_genecompass_w_human_mouse_base.py \
 
 ## Finetune the model
 ### Cell-type Annotation
-We performed a comprehensive analysis of diverse organ datasets from humans and mice. See cell-type annotation [example](downstream_tasks/celltype_annotation.ipynb)  on hMS.
+We performed a comprehensive analysis of diverse organ datasets from humans and mice. See cell-type annotation [example](downstream_tasks/examples/celltype_annotation.ipynb)  on hMS.
 
 ### In-silico Perturbation for GRN Inference
-The GRN prediction is based on the cosine similarity of gene embeddings between origin state and in silico perturbed state. By comparing the cosine similarity among genes except for the TF, those with low cosine similarity genes are prone to be considered as Target Genes (TG). See insilico_perturbation [example](downstream_tasks/insilico_perturbation.ipynb).
+The GRN prediction is based on the cosine similarity of gene embeddings between origin state and in silico perturbed state. By comparing the cosine similarity among genes except for the TF, those with low cosine similarity genes are prone to be considered as Target Genes (TG). See insilico_perturbation [example](downstream_tasks/examples/insilico_perturbation.ipynb).
 
 ### Improved gene perturbation prediction using GEARS
 Part here is using Gears to implement large model coding to predict changes in gene expression after gene perturbation in downstream tasks.
-The overall code is based on the initial Gears, where the parts that generate the code are tweaked and modified.
-Gears: Implements the predictive function of Gears expression change
-norman_pre_properturb_processed: The result of processed Norman data sets
+The overall code is based on the initial Gears, where the parts that generate the code are tweaked and modified.（Gears: Implements the predictive function of Gears expression change.） 
 Data preprocessing code: A layer supplement to the data set that is required for Gears-specific modifications, outside of the genecompass large model.
-Can be directly by [example](gears/gears_code/gears_work.py) corresponding wlhuang in the environment for the server
+Can be directly by [example](downstream_tasks/gears/gears_code/gears_work.py) corresponding gears in the environment for the server
 
 ### GRN inference
 
-This task is included in [GRN inference](grn_inference) folder, please go to corresponding folder and read [README.md](grn_inference/README.md) to implement the task
+This task is included in [GRN inference](downstream_tasks/grn_inference) folder, please go to corresponding folder and read [README.md](downstream_tasks/grn_inference/README.md) to implement the task
 
 
 ### Drug dose response
 
-This task is included in [Drug dose response](drug_dose_response) folder, please go to corresponding folder and read [README.md](drug_dose_response/README.md) to implement the task
+This task is included in [Drug dose response](downstream_tasks/drug_dose_response) folder, please go to corresponding folder and read [README.md](downstream_tasks/drug_dose_response/README.md) to implement the task
 
 
 
 ### Gene expression profiling
 
 
-This task is included in [Gene expression profiling](gene_expression_profiling) folder, please go to corresponding folder and read [README.md](gene_expression_profiling/README.md) to implement the task
+This task is included in [Gene expression profiling](downstream_tasks/gene_expression_profiling) folder, please go to corresponding folder and read [README.md](downstream_tasks/gene_expression_profiling/README.md) to implement the task
 
 
 
