@@ -43,6 +43,16 @@ We here show the data processing procedures with [preprocess](./preprocess).
 ### Pretrained data
 GeneCompass utilizes over 100 million single-cell transcriptomes from humans and mice. We provide 50K, 500k and 5M pretrained data of human and mouse  respectively.  You can download and put dataset dir under main path.(e.g. './data/genecompass_5M/')
 
+### Prior knowledge
+To access the prior knowledge, we need to use **git-lfs** for downloading to avoid loading errors. An example is:
+
+```
+git clone https://github.com/xCompass-AI/GeneCompass
+module load git-lfs # if in hpc
+cd GeneCompass
+git-lfs pull
+```
+
 
 | Data | Description | Download | 
 |:------|:-------|:-------:|
