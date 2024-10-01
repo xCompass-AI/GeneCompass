@@ -57,7 +57,7 @@ To access the prior knowledge, we need to use **git-lfs** for downloading to avo
 git clone https://github.com/xCompass-AI/GeneCompass
 module load git-lfs # if in hpc
 cd GeneCompass
-git-lfs pull
+git lfs pull
 ```
 
 ### Downstream task data
