@@ -35,6 +35,8 @@ Pretrained models of GeneCompass on 100 million single-cell transcriptomes from 
 | GeneCompass_Small | Pretrained on 6-layer GeneCompass. |[Link](https://www.scidb.cn/en/anonymous/SUZOdk1y) | 
 | GeneCompass_Base | Pretrained on 12-layer GeneCompass.| [Link](https://www.scidb.cn/en/anonymous/SUZOdk1y) | 
 
+## Prior Knowledge
+The embedding of prior knowledge could be found at [prior_knowledge](https://drive.google.com/drive/folders/1a8jhpyw4jmAifK6Ui6u1RJtRFlbsdx08?usp=sharing)
 
 ## Prepare Data
 ### Preprocess data 
