@@ -25,7 +25,7 @@ def get_GeneCompass_cls_new_embedding(Path, dataset_path, checkpoint_path, get_e
 
     
 
-    file = open('./h_m_token2000W.pickle', 'rb')
+    file = open('./human_mouse_tokens.pickle', 'rb')
     id_token = pickle.load(file)
     file.close()
     
