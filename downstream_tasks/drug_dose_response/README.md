@@ -48,6 +48,9 @@ After you get the embedding, please run command as shown in below
 python get_result-Dose-Response-GeneCompass.py    # For GeneCompass
 ```
 
+## Dependency files
+
+The dependency files can be found at [GRN_Inference_Files](https://drive.google.com/drive/folders/1v3fDJ5hWwFMjnYLLdzE39LDshGutj3Ts?usp=sharing).
 
 # References
 For Drug dose response task, we refer CPA model to complete our jobs, the paper is [Learning interpretable cellular responses to complex perturbations in high-throughput screens](https://www.biorxiv.org/content/10.1101/2021.04.14.439903v2). The code is at:(https://github.com/facebookresearch/CPA)
