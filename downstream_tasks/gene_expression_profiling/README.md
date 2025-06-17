@@ -48,6 +48,9 @@ After you get the embedding, please run command as shown in below
 python get_result-Gene-expression-profiling-GeneCompass.py    # For GeneCompass
 ```
 
+## Dependency files
+
+The dependency files can be found at [GRN_Inference_Files](https://drive.google.com/drive/folders/1v3fDJ5hWwFMjnYLLdzE39LDshGutj3Ts?usp=sharing).
 
 # References
 
