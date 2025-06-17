@@ -19,7 +19,7 @@ The Pretrained-weights are provided in "./model/GeneCompass"
 
 ## Dependency files
 
-The dependency file can be found at [GRN_Inference_Files](https://drive.google.com/drive/folders/1v3fDJ5hWwFMjnYLLdzE39LDshGutj3Ts?usp=sharing).
+The dependency files can be found at [GRN_Inference_Files](https://drive.google.com/drive/folders/1v3fDJ5hWwFMjnYLLdzE39LDshGutj3Ts?usp=sharing).
 
 # How to use this project
 
