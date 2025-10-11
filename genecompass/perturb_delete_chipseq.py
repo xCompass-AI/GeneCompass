@@ -18,15 +18,7 @@ from tqdm.notebook import trange
 import warnings
 warnings.filterwarnings("ignore")
 logger = logging.getLogger(__name__)
-TOKEN_DICTIONARY_FILE = '../prior_knowledge/human_mouse_tokens.pickle'
-out = load_prior_embedding(token_dictionary_or_path=TOKEN_DICTIONARY_FILE)
 
-knowledges = dict()
-knowledges['promoter'] = out[0]
-knowledges['co_exp'] = out[1]
-knowledges['gene_family'] = out[2]
-knowledges['peca_grn'] = out[3]
-knowledges['homologous_gene_human2mouse'] = out[4]
 def quant_layers(model):
     layer_nums = []
     for name, parameter in model.named_parameters():
@@ -419,13 +411,17 @@ class InSilicoPerturber:
         self.forward_batch_size = forward_batch_size
         self.nproc = nproc
         self.save_raw_data = save_raw_data
-
+        self.token_dictionary_file = token_dictionary_file
         self.validate_options()
 
         # load token dictionary (Ensembl IDs:token)
-        with open(token_dictionary_file, "rb") as f:
+        with open(self.token_dictionary_file, "rb") as f:
             self.gene_token_dict = pickle.load(f)
+            self.number_to_ensembl = {}
+            for ensembl_id, number_id in self.gene_token_dict.items():
+                self.number_to_ensembl[number_id] = ensembl_id
 
+        self.ensembl_id = self.number_to_ensembl[number_id]
         if anchor_gene is None:
             self.anchor_token = None
         else:
@@ -434,7 +430,8 @@ class InSilicoPerturber:
         if genes_to_perturb == "all":
             self.tokens_to_perturb = "all"
         else:
-            self.tokens_to_perturb = self.gene_token_dict[genes_to_perturb]
+            # self.tokens_to_perturb = self.gene_token_dict[genes_to_perturb]
+            self.tokens_to_perturb = [self.ensembl_id]
 
     def validate_options(self):
         for attr_name, valid_options in self.valid_option_dict.items():
@@ -536,7 +533,10 @@ class InSilicoPerturber:
 
         filtered_input_data = self.load_and_filter(input_data_file)
         df = filtered_input_data.to_pandas()
+        if 'celltype' in df.columns:
+            df = df.rename(columns={'celltype': 'cell_type'})
         df['species'] = 0 # 0:human; 1:mouse
+        df['species'] = df['species'].astype('int32')
         features = Features({
             'input_ids': Sequence(feature=Value(dtype='int32')),
             'values': Sequence(feature=Value(dtype='float32')),
@@ -581,6 +581,14 @@ class InSilicoPerturber:
 
     # load model to GPU
     def load_model(self, model_directory):
+        out = load_prior_embedding(token_dictionary_or_path=self.token_dictionary_file)
+
+        knowledges = dict()
+        knowledges['promoter'] = out[0]
+        knowledges['co_exp'] = out[1]
+        knowledges['gene_family'] = out[2]
+        knowledges['peca_grn'] = out[3]
+        knowledges['homologous_gene_human2mouse'] = out[4]
         model = BertForMaskedLM.from_pretrained(model_directory,
                                                 knowledges=knowledges,
                                                 output_hidden_states=True,

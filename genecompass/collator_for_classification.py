@@ -525,6 +525,30 @@ class PrecollatorForGeneAndCellClassification(SpecialTokensMixin):
     def __len__(self):
         return len(token_dictionary)
 
+    def save_pretrained(self, save_directory):
+
+        import os
+        import json
+
+        if not os.path.exists(save_directory):
+            os.makedirs(save_directory)
+
+        tokenizer_config = {
+            "mask_token": self.mask_token,
+            "mask_token_id": self.mask_token_id,
+            "pad_token": self.pad_token,
+            "pad_token_id": self.pad_token_id,
+            "padding_side": self.padding_side,
+            "model_input_names": self.model_input_names,
+            "all_special_ids": self.all_special_ids,
+        }
+
+        config_path = os.path.join(save_directory, "tokenizer_config.json")
+        with open(config_path, "w") as f:
+            json.dump(tokenizer_config, f, indent=2)
+
+        print(f"Tokenizer configuration saved to {save_directory}")
+
 
 # collator functions
 
@@ -585,8 +609,18 @@ class DataCollatorForGeneClassification(DataCollatorForTokenClassification):
     def __call__(self, features):
         batch = self._prepare_batch(features)
 
-        batch = {k: torch.tensor(v, dtype=torch.int64) for k, v in batch.items()}
-        return batch
+        processed_batch = {}
+        for k, v in batch.items():
+            if isinstance(v, torch.Tensor):
+                processed_batch[k] = v.clone().detach()
+            else:
+                processed_batch[k] = torch.tensor(v, dtype=torch.int64)
+
+        return processed_batch
+
+    def save_pretrained(self, output_dir):
+        self.tokenizer.save_pretrained(output_dir)
+
 
     
 class DataCollatorForCellClassification(DataCollatorForGeneClassification):
