@@ -2,6 +2,9 @@
 # coding: utf-8
 
 import os
+import sys
+project_root = "/home/wangx/code/Progress/GeneCompass-main/"
+sys.path.append(project_root)
 os.environ["NCCL_DEBUG"] = "INFO"
 os.environ["OMPI_MCA_opal_cuda_support"] = "true"
 os.environ["CONDA_OVERRIDE_GLIBC"] = "2.56"
@@ -144,7 +147,7 @@ def main(args):
 
     # Start training
     trainer.train()
-    # ckpt_path = '/home/share/genecompass_github/xCompass/pretrained_models/GeneCompass_Base'
+    # ckpt_path = '/home/wangx/code/Progress/GeneCompass-main/pretrained_models/GeneCompass_Base'
     # trainer.train(resume_from_checkpoint=ckpt_path)
 
     # save model
