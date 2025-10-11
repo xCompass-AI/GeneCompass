@@ -112,9 +112,9 @@ class TensorType(ExplicitEnum):
 
 class GenecompassPreCollator(SpecialTokensMixin):
     def __init__(self, *args, **kwargs) -> None:
-        
-        super().__init__(mask_token = "<mask>", pad_token = "<pad>")
-        
+
+        super().__init__(mask_token="<mask>", pad_token="<pad>")
+
         self.token_dictionary = kwargs.get("token_dictionary")
         # self.mask_token = "<mask>"
         # self.mask_token_id = self.token_dictionary.get("<mask>")
@@ -126,18 +126,18 @@ class GenecompassPreCollator(SpecialTokensMixin):
         #     self.token_dictionary.get("<pad>"),
         # ]
         self.model_input_names = ["input_ids"]
-    
-    def convert_ids_to_tokens(self,value):
+
+    def convert_ids_to_tokens(self, value):
         return self.token_dictionary.get(value)
 
     def _get_padding_truncation_strategies(
-        self,
-        padding=False,
-        truncation=False,
-        max_length=None,
-        pad_to_multiple_of=None,
-        verbose=True,
-        **kwargs,
+            self,
+            padding=False,
+            truncation=False,
+            max_length=None,
+            pad_to_multiple_of=None,
+            verbose=True,
+            **kwargs,
     ):
         """
         Find the correct padding/truncation strategy with backward compatibility for old arguments (truncation_strategy
@@ -151,7 +151,7 @@ class GenecompassPreCollator(SpecialTokensMixin):
         if max_length is not None and padding is False and truncation is False:
             if verbose:
                 if not self.deprecation_warnings.get(
-                    "Truncation-not-explicitly-activated", False
+                        "Truncation-not-explicitly-activated", False
                 ):
                     logger.warning(
                         "Truncation was not explicitly activated but `max_length` is provided a specific value, "
@@ -223,7 +223,7 @@ class GenecompassPreCollator(SpecialTokensMixin):
                 if self.model_max_length > LARGE_INTEGER:
                     if verbose:
                         if not self.deprecation_warnings.get(
-                            "Asking-to-pad-to-max_length", False
+                                "Asking-to-pad-to-max_length", False
                         ):
                             logger.warning(
                                 "Asking to pad to max_length but no maximum length is provided and the model has no predefined maximum length. "
@@ -238,7 +238,7 @@ class GenecompassPreCollator(SpecialTokensMixin):
                 if self.model_max_length > LARGE_INTEGER:
                     if verbose:
                         if not self.deprecation_warnings.get(
-                            "Asking-to-truncate-to-max_length", False
+                                "Asking-to-truncate-to-max_length", False
                         ):
                             logger.warning(
                                 "Asking to truncate to max_length but no maximum length is provided and the model has no predefined maximum length. "
@@ -253,7 +253,7 @@ class GenecompassPreCollator(SpecialTokensMixin):
 
         # Test if we have a padding token
         if padding_strategy != PaddingStrategy.DO_NOT_PAD and (
-            not self.pad_token or self.pad_token_id < 0
+                not self.pad_token or self.pad_token_id < 0
         ):
             raise ValueError(
                 "Asking to pad but the tokenizer does not have a padding token. "
@@ -263,11 +263,11 @@ class GenecompassPreCollator(SpecialTokensMixin):
 
         # Check that we will truncate to a multiple of pad_to_multiple_of if both are provided
         if (
-            truncation_strategy != TruncationStrategy.DO_NOT_TRUNCATE
-            and padding_strategy != PaddingStrategy.DO_NOT_PAD
-            and pad_to_multiple_of is not None
-            and max_length is not None
-            and (max_length % pad_to_multiple_of != 0)
+                truncation_strategy != TruncationStrategy.DO_NOT_TRUNCATE
+                and padding_strategy != PaddingStrategy.DO_NOT_PAD
+                and pad_to_multiple_of is not None
+                and max_length is not None
+                and (max_length % pad_to_multiple_of != 0)
         ):
             raise ValueError(
                 f"Truncation and padding are both activated but "
@@ -277,20 +277,20 @@ class GenecompassPreCollator(SpecialTokensMixin):
         return padding_strategy, truncation_strategy, max_length, kwargs
 
     def pad(
-        self,
-        encoded_inputs: Union[
-            BatchEncoding,
-            List[BatchEncoding],
-            Dict[str, EncodedInput],
-            Dict[str, List[EncodedInput]],
-            List[Dict[str, EncodedInput]],
-        ],
-        padding: Union[bool, str, PaddingStrategy] = True,
-        max_length: Optional[int] = None,
-        pad_to_multiple_of: Optional[int] = None,
-        return_attention_mask: Optional[bool] = True,
-        return_tensors: Optional[Union[str, TensorType]] = None,
-        verbose: bool = True,
+            self,
+            encoded_inputs: Union[
+                BatchEncoding,
+                List[BatchEncoding],
+                Dict[str, EncodedInput],
+                Dict[str, List[EncodedInput]],
+                List[Dict[str, EncodedInput]],
+            ],
+            padding: Union[bool, str, PaddingStrategy] = True,
+            max_length: Optional[int] = None,
+            pad_to_multiple_of: Optional[int] = None,
+            return_attention_mask: Optional[bool] = True,
+            return_tensors: Optional[Union[str, TensorType]] = None,
+            verbose: bool = True,
     ) -> BatchEncoding:
         """
         Pad a single encoded input or a batch of encoded inputs up to predefined length or to the max sequence length
@@ -348,7 +348,7 @@ class GenecompassPreCollator(SpecialTokensMixin):
         # If we have a list of dicts, let's convert it in a dict of lists
         # We do this to allow using this method as a collate_fn function in PyTorch Dataloader
         if isinstance(encoded_inputs, (list, tuple)) and isinstance(
-            encoded_inputs[0], (dict, BatchEncoding)
+                encoded_inputs[0], (dict, BatchEncoding)
         ):
             encoded_inputs = {
                 key: [example[key] for example in encoded_inputs]
@@ -397,7 +397,6 @@ class GenecompassPreCollator(SpecialTokensMixin):
 
             for key, value in encoded_inputs.items():
                 encoded_inputs[key] = to_py_obj(value)
-                
 
         # Convert padding_strategy in PaddingStrategy
         padding_strategy, _, max_length, _ = self._get_padding_truncation_strategies(
@@ -438,8 +437,8 @@ class GenecompassPreCollator(SpecialTokensMixin):
             # Use for datasets which have padded data to len(outputs['input_ids']==2048
             outputs = dict((k, v[i]) for k, v in encoded_inputs.items())
             original_length = outputs['input_ids'].index(0) if (
-                0 in outputs['input_ids']
-                ) else len(outputs['input_ids'])
+                    0 in outputs['input_ids']
+            ) else len(outputs['input_ids'])
             outputs['attention_mask'] = [1] * original_length
             outputs['attention_mask'] += [0] * (len(outputs['input_ids']) - original_length)
 
@@ -451,12 +450,12 @@ class GenecompassPreCollator(SpecialTokensMixin):
         return BatchEncoding(batch_outputs, tensor_type=return_tensors)
 
     def _pad(
-        self,
-        encoded_inputs: Union[Dict[str, EncodedInput], BatchEncoding],
-        max_length: Optional[int] = None,
-        padding_strategy: PaddingStrategy = PaddingStrategy.DO_NOT_PAD,
-        pad_to_multiple_of: Optional[int] = None,
-        return_attention_mask: Optional[bool] = None,
+            self,
+            encoded_inputs: Union[Dict[str, EncodedInput], BatchEncoding],
+            max_length: Optional[int] = None,
+            padding_strategy: PaddingStrategy = PaddingStrategy.DO_NOT_PAD,
+            pad_to_multiple_of: Optional[int] = None,
+            return_attention_mask: Optional[bool] = None,
     ) -> dict:
         """
         Pad encoded inputs (on left/right and up to predefined length or max length in the batch)
@@ -489,15 +488,15 @@ class GenecompassPreCollator(SpecialTokensMixin):
             max_length = len(required_input)
 
         if (
-            max_length is not None
-            and pad_to_multiple_of is not None
-            and (max_length % pad_to_multiple_of != 0)
+                max_length is not None
+                and pad_to_multiple_of is not None
+                and (max_length % pad_to_multiple_of != 0)
         ):
             max_length = ((max_length // pad_to_multiple_of) + 1) * pad_to_multiple_of
 
         needs_to_be_padded = (
-            padding_strategy != PaddingStrategy.DO_NOT_PAD
-            and len(required_input) != max_length
+                padding_strategy != PaddingStrategy.DO_NOT_PAD
+                and len(required_input) != max_length
         )
 
         if needs_to_be_padded:
@@ -509,15 +508,15 @@ class GenecompassPreCollator(SpecialTokensMixin):
                     ] * difference
                 if "token_type_ids" in encoded_inputs:
                     encoded_inputs["token_type_ids"] = (
-                        encoded_inputs["token_type_ids"]
-                        + [self.pad_token_type_id] * difference
+                            encoded_inputs["token_type_ids"]
+                            + [self.pad_token_type_id] * difference
                     )
                 if "special_tokens_mask" in encoded_inputs:
                     encoded_inputs["special_tokens_mask"] = (
-                        encoded_inputs["special_tokens_mask"] + [1] * difference
+                            encoded_inputs["special_tokens_mask"] + [1] * difference
                     )
                 encoded_inputs[self.model_input_names[0]] = (
-                    required_input + [self.pad_token_id] * difference
+                        required_input + [self.pad_token_id] * difference
                 )
             elif self.padding_side == "left":
                 if return_attention_mask:
@@ -526,15 +525,15 @@ class GenecompassPreCollator(SpecialTokensMixin):
                     )
                 if "token_type_ids" in encoded_inputs:
                     encoded_inputs["token_type_ids"] = [
-                        self.pad_token_type_id
-                    ] * difference + encoded_inputs["token_type_ids"]
+                                                           self.pad_token_type_id
+                                                       ] * difference + encoded_inputs["token_type_ids"]
                 if "special_tokens_mask" in encoded_inputs:
                     encoded_inputs["special_tokens_mask"] = [
-                        1
-                    ] * difference + encoded_inputs["special_tokens_mask"]
+                                                                1
+                                                            ] * difference + encoded_inputs["special_tokens_mask"]
                 encoded_inputs[self.model_input_names[0]] = [
-                    self.pad_token_id
-                ] * difference + required_input
+                                                                self.pad_token_id
+                                                            ] * difference + required_input
             else:
                 raise ValueError("Invalid padding strategy:" + str(self.padding_side))
         elif return_attention_mask and "attention_mask" not in encoded_inputs:
@@ -543,10 +542,10 @@ class GenecompassPreCollator(SpecialTokensMixin):
         return encoded_inputs
 
     def get_special_tokens_mask(
-        self,
-        token_ids_0: List[int],
-        token_ids_1: Optional[List[int]] = None,
-        already_has_special_tokens: bool = False,
+            self,
+            token_ids_0: List[int],
+            token_ids_1: Optional[List[int]] = None,
+            already_has_special_tokens: bool = False,
     ) -> List[int]:
         """
         Retrieves sequence ids from a token list that has no special tokens added. This method is called when adding
@@ -577,7 +576,7 @@ class GenecompassPreCollator(SpecialTokensMixin):
         return special_tokens_mask
 
     def convert_tokens_to_ids(
-        self, tokens: Union[str, List[str]]
+            self, tokens: Union[str, List[str]]
     ) -> Union[int, List[int]]:
         """
         Converts a token string (or a sequence of tokens) in a single integer id (or a sequence of ids), using the
@@ -610,7 +609,7 @@ class GenecompassPreCollator(SpecialTokensMixin):
 
 class GenecompassPretrainer(Trainer):
     def __init__(self, *args, **kwargs):
-        data_collator = kwargs.get("data_collator",None)
+        data_collator = kwargs.get("data_collator", None)
         token_dictionary = kwargs.pop("token_dictionary")
 
         if data_collator is None:
@@ -675,6 +674,7 @@ class GenecompassPretrainer(Trainer):
             self.accelerator.backward(loss)
 
         return loss.detach() / self.args.gradient_accumulation_steps
+
     def compute_loss(self, model, inputs, return_outputs=False):
         """
         How the loss is computed by Trainer. By default, all models return the loss in the first element.
@@ -707,6 +707,7 @@ class GenecompassPretrainer(Trainer):
             value_loss = outputs["value_loss"] if isinstance(outputs, dict) else outputs[0]
 
         return (loss, outputs) if return_outputs else loss, id_loss, value_loss
+
     # modify LengthGroupedSampler to avoid dataset[length_column_name] hanging
     def _get_train_sampler(self) -> Optional[torch.utils.data.sampler.Sampler]:
         if not isinstance(self.train_dataset, collections.abc.Sized):
@@ -755,9 +756,9 @@ class GenecompassPretrainer(Trainer):
                     return RandomSampler(self.train_dataset, generator=generator)
                 return RandomSampler(self.train_dataset)
             elif (
-                self.args.parallel_mode
-                in [ParallelMode.TPU, ParallelMode.SAGEMAKER_MODEL_PARALLEL]
-                and not self.args.dataloader_drop_last
+                    self.args.parallel_mode
+                    in [ParallelMode.TPU, ParallelMode.SAGEMAKER_MODEL_PARALLEL]
+                    and not self.args.dataloader_drop_last
             ):
                 # Use a loop for TPUs when drop_last is False to have all batches have the same size.
                 return DistributedSamplerWithLoop(
@@ -781,17 +782,18 @@ class CustomDistributedLengthGroupedSampler(DistributedLengthGroupedSampler):
     Distributed Sampler that samples indices in a way that groups together features of the dataset of roughly the same
     length while keeping a bit of randomness.
     """
+
     # Copied and adapted from PyTorch DistributedSampler.
     def __init__(
-        self,
-        dataset: Dataset,
-        batch_size: int,
-        num_replicas: Optional[int] = None,
-        rank: Optional[int] = None,
-        seed: int = 0,
-        drop_last: bool = False,
-        lengths: Optional[List[int]] = None,
-        model_input_name: Optional[str] = None,
+            self,
+            dataset: Dataset,
+            batch_size: int,
+            num_replicas: Optional[int] = None,
+            rank: Optional[int] = None,
+            seed: int = 0,
+            drop_last: bool = False,
+            lengths: Optional[List[int]] = None,
+            model_input_name: Optional[str] = None,
     ):
         if num_replicas is None:
             if not dist.is_available():
@@ -827,11 +829,11 @@ class CustomDistributedLengthGroupedSampler(DistributedLengthGroupedSampler):
         if lengths is None:
             print("Lengths is none - calculating lengths.")
             if (
-                not (
-                    isinstance(dataset[0], dict)
-                    or isinstance(dataset[0], BatchEncoding)
-                )
-                or self.model_input_name not in dataset[0]
+                    not (
+                            isinstance(dataset[0], dict)
+                            or isinstance(dataset[0], BatchEncoding)
+                    )
+                    or self.model_input_name not in dataset[0]
             ):
                 raise ValueError(
                     "Can only automatically infer lengths for datasets whose items are dictionaries with an "
@@ -844,7 +846,7 @@ class CustomDistributedLengthGroupedSampler(DistributedLengthGroupedSampler):
         # Deterministically shuffle based on epoch and seed
         g = torch.Generator()
         g.manual_seed(self.seed + self.epoch)
-        
+
         indices = get_length_grouped_indices(self.lengths, self.batch_size, generator=g)
 
         if not self.drop_last:
@@ -856,14 +858,14 @@ class CustomDistributedLengthGroupedSampler(DistributedLengthGroupedSampler):
         assert len(indices) == self.total_size
 
         # subsample
-        indices = indices[self.rank : self.total_size : self.num_replicas]
+        indices = indices[self.rank: self.total_size: self.num_replicas]
         assert len(indices) == self.num_samples
 
         return iter(indices)
 
 
 def get_length_grouped_indices(
-    lengths, batch_size, mega_batch_mult=None, generator=None
+        lengths, batch_size, mega_batch_mult=None, generator=None
 ):
     """
     Return a list of indices so that each slice of :obj:`batch_size` consecutive indices correspond to elements of
@@ -888,7 +890,7 @@ def get_length_grouped_indices(
     indices = torch.randperm(len(lengths), generator=generator)
     megabatch_size = mega_batch_mult * batch_size
     megabatches = [
-        indices[i : i + megabatch_size].tolist()
+        indices[i: i + megabatch_size].tolist()
         for i in range(0, len(lengths), megabatch_size)
     ]
     megabatches = [
