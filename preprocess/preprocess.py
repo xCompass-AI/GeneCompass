@@ -220,19 +220,19 @@ def save_disk(patch_str,dataset,length):
         pickle.dump(sorted_list, f)
 
 # dict_path = 'scdata/human_medium.pickle' #中值字典路径，需要改
-dict_path = 'scdata/dict/human_gene_median_after_filter.pickle' #中值字典路径
+dict_path = '../scdata/dict/human_gene_median_after_filter.pickle' #中值字典路径
 
 # gene_token_path = 'scdata/h&m_token2000W.pickle' #token路径，需要改
-gene_token_path = 'scdata/dict/human_mouse_tokens.pickle'
+gene_token_path = '../scdata/dict/human_mouse_tokens.pickle'
 
-f_list = ["scdata/mouse_protein_coding.txt", "scdata/human_protein_coding.txt",
-               "scdata/mouse_miRNA.txt", "scdata/human_miRNA.txt",
-               "scdata/human_mitochondria.xlsx", "scdata/mouse_mitochondria.xlsx"]
+f_list = ["../scdata/mouse_protein_coding.txt", "../scdata/human_protein_coding.txt",
+               "../scdata/mouse_miRNA.txt", "../scdata/human_miRNA.txt",
+               "../scdata/human_mitochondria.xlsx", "../scdata/mouse_mitochondria.xlsx"]
 specices_str = 'human'
-gene_id_name_path = 'scdata/Gene_id_name_dict1.pickle'
-gene_id_path = 'scdata/gene_id_hpromoter.pickle' #(promoter gen2vec 与protein和gene2vec交集)还需改
-dir_path = 'scdata/human_r8'
-out_path = 'scdata/output/'
+gene_id_name_path = '../scdata/Gene_id_name_dict1.pickle'
+gene_id_path = '../scdata/gene_id_hpromoter.pickle' #(promoter gen2vec 与protein和gene2vec交集)还需改
+# dir_path = 'scdata/human_r8'
+out_path = '../scdata/output/'
 
 with open(gene_id_name_path, 'rb') as f:
     dict1 = pickle.load(f)
@@ -253,7 +253,8 @@ with open(gene_id_path,'rb') as f:
 patch_id = 1
 
 print("Started:")
-df = pd.read_csv("SRR17066581_count.csv")
+df = pd.read_csv("./GSE210543_RPE_adult_counts.csv")
+
 # df = pd.read_csv("scdata/test/GSM6537936_count.csv")
 
 df = df.rename(columns={
