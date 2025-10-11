@@ -109,7 +109,10 @@ pretrain_genecompass_w_human_mouse_base.py \
 --fp16 \
 ```
 
+You can also refer to the content in `./downstream_tasks/examples/pretrain_genecompass_w_human_mouse_base.ipynb` to perform pre-training step by step.
+
 ## Finetune the model
+
 ### Cell-type Annotation
 We performed a comprehensive analysis of diverse organ datasets from humans and mice. See cell-type annotation [example](downstream_tasks/examples/celltype_annotation.ipynb)  on hMS.
 
