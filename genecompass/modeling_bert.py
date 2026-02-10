@@ -1332,15 +1332,17 @@ class BertForQuestionAnswering(BertPreTrainedModel):
 class EmbeddingWarmup(nn.Module):
     def __init__(self, warmup_steps, emb_warmup_steps):
         super().__init__()
-        alpha = torch.tensor(1., dtype=torch.float)
+        alpha = torch.tensor(0., dtype=torch.float)
         steps = torch.tensor(0, dtype=torch.long)
         self.alpha = torch.nn.Parameter(alpha, requires_grad=False)
         self.steps = torch.nn.Parameter(steps, requires_grad=False)
-        # self.warmup_steps = warmup_steps
-        self.warmup_steps = 0
+        self.warmup_steps = warmup_steps
+        # self.warmup_steps = 0
         self.per_step = 1. / emb_warmup_steps
 
     def forward(self):
         self.steps += 1
         if self.steps > self.warmup_steps and self.alpha < 1.:
-            self.alpha += self.per_step
+            self.alpha = min(self.alpha + self.per_step, 1.0)
+
+        return self.alpha
