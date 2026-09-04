@@ -146,12 +146,13 @@ This task is included in [Gene expression profiling](downstream_tasks/gene_expre
 ## Citation
 If you find this code useful for your research, please consider citing:
 ```
-@article{yang2023genecompass,
-  title={Genecompass: Deciphering universal gene regulatory mechanisms with knowledge-informed cross-species foundation model},
-  author={Yang, Xiaodong and Liu, Guole and Feng, Guihai and Bu, Dechao and Wang, Pengfei and Jiang, Jie and Chen, Shubai and Yang, Qinmeng and Zhang, Yiyang and Man, Zhenpeng and others},
-  journal={bioRxiv},
-  pages={2023--09},
-  year={2023},
-  publisher={Cold Spring Harbor Laboratory}
+@article{yang2024genecompass,
+  title={GeneCompass: deciphering universal gene regulatory mechanisms with a knowledge-informed cross-species foundation model},
+  author={Yang, Xiaodong and Liu, Guole and Feng, Guihai and Bu, Dechao and Wang, Pengfei and Jiang, Jie and Chen, Shubai and Yang, Qinmeng and Miao, Hefan and Zhang, Yiyang and Man, Zhenpeng and others},
+  journal={Cell Research},
+  volume={34},
+  pages={830--845},
+  year={2024},
+  publisher={Nature Publishing Group}
 }
 ```
