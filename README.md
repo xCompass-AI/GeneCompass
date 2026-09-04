@@ -45,12 +45,22 @@ We here show the data processing procedures with [preprocess](./preprocess).
 ### Pretrained data
 GeneCompass utilizes over 100 million single-cell transcriptomes from humans and mice. We provide 50K, 500k and 5M pretrained data of human and mouse  respectively.  You can download and put dataset dir under main path.(e.g. './data/genecompass_5M/')
 
-
 | Data | Description | Download | 
 |:------|:-------|:-------:|
 | 0.05M | Pretrained data of 50K single cells.| [Link-Human](https://www.scidb.cn/file?fid=be29663db8c11f4e59aaf2d572b699fe&mode=front) [Link-Mouse](https://www.scidb.cn/file?fid=d27960405a1e979eadfc1a00696d5bf2&mode=front) | 
 | 0.5M | Pretrained data of 500k single cells.| [Link-Human](https://www.scidb.cn/file?fid=d46129ce14de622c4a07a1d1574dddaa&mode=front) [Link-Mouse](https://www.scidb.cn/file?fid=65ff1a08ea3292dbbb2ca113f5041ae8&mode=front) | 
 | 5M | Pretrained data of 5M single cells.| [Link-Human](https://www.scidb.cn/file?fid=826380b58010377e3fa8724fcf4a5fcc&mode=front) [Link-Mouse](https://www.scidb.cn/file?fid=78e90884d7664b7baa0792c047c7aae8&mode=front) | 
+
+
+### Prior knowledge
+To access the prior knowledge, we need to use **git-lfs** for downloading to avoid loading errors. An example is:
+
+```
+git clone https://github.com/xCompass-AI/GeneCompass
+module load git-lfs # if in hpc
+cd GeneCompass
+git lfs pull
+```
 
 ### Downstream task data
 #### Cell-type Annotation
